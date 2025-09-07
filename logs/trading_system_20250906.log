@@ -1,0 +1,174 @@
+2025-09-06 13:02:58,125 - trading_system - INFO - trading_config:279 - ✅ Logging system initialized - Level: INFO
+2025-09-06 13:02:58,125 - trading_system - INFO - trading_config:280 - Log file: /workspaces/NithyanTradeEngine/logs/trading_system_20250906.log
+2025-09-06 13:02:58,125 - trading_system - INFO - main:32 - 🚀 Initializing Nifty Universe Trading System...
+2025-09-06 13:02:58,126 - trading_system - INFO - main:50 - ================================================================================
+2025-09-06 13:02:58,126 - trading_system - INFO - main:51 - 🏛️  NIFTY UNIVERSE INSTITUTIONAL TRADING SYSTEM
+2025-09-06 13:02:58,126 - trading_system - INFO - main:52 - ================================================================================
+2025-09-06 13:02:58,126 - trading_system - INFO - main:55 - 💰 CAPITAL MANAGEMENT:
+2025-09-06 13:02:58,126 - trading_system - INFO - main:56 -    Total Capital: ₹5,000,000
+2025-09-06 13:02:58,126 - trading_system - INFO - main:57 -    Deployable Capital: ₹2,500,000 (50%)
+2025-09-06 13:02:58,126 - trading_system - INFO - main:58 -    Cash Reserve: ₹2,500,000 (50%)
+2025-09-06 13:02:58,126 - trading_system - INFO - main:61 - 📊 POSITION SIZING:
+2025-09-06 13:02:58,126 - trading_system - INFO - main:62 -    Max Positions: 15
+2025-09-06 13:02:58,126 - trading_system - INFO - main:63 -    Min Positions: 10
+2025-09-06 13:02:58,126 - trading_system - INFO - main:64 -    Position Size Range: ₹75,000 - ₹200,000
+2025-09-06 13:02:58,126 - trading_system - INFO - main:67 - 🛡️  RISK MANAGEMENT:
+2025-09-06 13:02:58,126 - trading_system - INFO - main:68 -    Daily Loss Limit: 2.0%
+2025-09-06 13:02:58,126 - trading_system - INFO - main:69 -    Max Drawdown Limit: 8.0%
+2025-09-06 13:02:58,126 - trading_system - INFO - main:70 -    Max Sector Allocation: 30.0%
+2025-09-06 13:02:58,126 - trading_system - INFO - main:73 - ⚖️  SCORING WEIGHTS:
+2025-09-06 13:02:58,126 - trading_system - INFO - main:74 -    Fundamental: 25%
+2025-09-06 13:02:58,126 - trading_system - INFO - main:75 -    Technical: 30%
+2025-09-06 13:02:58,127 - trading_system - INFO - main:76 -    Quantitative: 25%
+2025-09-06 13:02:58,127 - trading_system - INFO - main:77 -    Macro: 20%
+2025-09-06 13:02:58,127 - trading_system - INFO - main:80 - 🔌 API CONFIGURATION:
+2025-09-06 13:02:58,127 - trading_system - INFO - main:81 -    Zerodha API: ❌ Not Configured
+2025-09-06 13:02:58,127 - trading_system - INFO - main:82 -    Sonar API: ❌ Not Configured
+2025-09-06 13:02:58,127 - trading_system - INFO - main:84 - ================================================================================
+2025-09-06 13:02:58,127 - trading_system - INFO - main:40 - ✅ System initialized successfully
+2025-09-06 13:02:58,127 - trading_system - INFO - main:89 - 🔍 Running system validation...
+2025-09-06 13:02:58,127 - trading_system - INFO - main:102 - ✅ Configuration validation passed
+2025-09-06 13:02:58,611 - trading_system - ERROR - main:113 - ❌ Database connection failed: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-06 13:02:58,612 - trading_system - INFO - main:119 - ✅ Risk limits validation passed
+2025-09-06 13:02:58,612 - trading_system - INFO - main:121 -    daily_loss_limit_inr: ₹100,000
+2025-09-06 13:02:58,612 - trading_system - INFO - main:121 -    max_drawdown_limit_inr: ₹400,000
+2025-09-06 13:02:58,612 - trading_system - INFO - main:121 -    max_sector_allocation_inr: ₹750,000
+2025-09-06 13:02:58,612 - trading_system - INFO - main:121 -    max_position_value_inr: ₹200,000
+2025-09-06 13:02:58,612 - trading_system - INFO - main:129 - 📋 Validation Summary: 2/4 checks passed
+2025-09-06 13:02:58,612 - trading_system - WARNING - main:135 - ⚠️  Some validations failed. Please review configuration.
+2025-09-06 13:03:22,642 - trading_system - INFO - trading_config:279 - ✅ Logging system initialized - Level: INFO
+2025-09-06 13:03:22,642 - trading_system - INFO - trading_config:280 - Log file: /workspaces/NithyanTradeEngine/logs/trading_system_20250906.log
+2025-09-06 13:03:22,642 - trading_system - INFO - main:32 - 🚀 Initializing Nifty Universe Trading System...
+2025-09-06 13:03:22,642 - trading_system - INFO - main:50 - ================================================================================
+2025-09-06 13:03:22,642 - trading_system - INFO - main:51 - 🏛️  NIFTY UNIVERSE INSTITUTIONAL TRADING SYSTEM
+2025-09-06 13:03:22,642 - trading_system - INFO - main:52 - ================================================================================
+2025-09-06 13:03:22,642 - trading_system - INFO - main:55 - 💰 CAPITAL MANAGEMENT:
+2025-09-06 13:03:22,642 - trading_system - INFO - main:56 -    Total Capital: ₹5,000,000
+2025-09-06 13:03:22,642 - trading_system - INFO - main:57 -    Deployable Capital: ₹2,500,000 (50%)
+2025-09-06 13:03:22,642 - trading_system - INFO - main:58 -    Cash Reserve: ₹2,500,000 (50%)
+2025-09-06 13:03:22,643 - trading_system - INFO - main:61 - 📊 POSITION SIZING:
+2025-09-06 13:03:22,643 - trading_system - INFO - main:62 -    Max Positions: 15
+2025-09-06 13:03:22,643 - trading_system - INFO - main:63 -    Min Positions: 10
+2025-09-06 13:03:22,643 - trading_system - INFO - main:64 -    Position Size Range: ₹75,000 - ₹200,000
+2025-09-06 13:03:22,643 - trading_system - INFO - main:67 - 🛡️  RISK MANAGEMENT:
+2025-09-06 13:03:22,643 - trading_system - INFO - main:68 -    Daily Loss Limit: 2.0%
+2025-09-06 13:03:22,643 - trading_system - INFO - main:69 -    Max Drawdown Limit: 8.0%
+2025-09-06 13:03:22,643 - trading_system - INFO - main:70 -    Max Sector Allocation: 30.0%
+2025-09-06 13:03:22,643 - trading_system - INFO - main:73 - ⚖️  SCORING WEIGHTS:
+2025-09-06 13:03:22,643 - trading_system - INFO - main:74 -    Fundamental: 25%
+2025-09-06 13:03:22,643 - trading_system - INFO - main:75 -    Technical: 30%
+2025-09-06 13:03:22,643 - trading_system - INFO - main:76 -    Quantitative: 25%
+2025-09-06 13:03:22,643 - trading_system - INFO - main:77 -    Macro: 20%
+2025-09-06 13:03:22,643 - trading_system - INFO - main:80 - 🔌 API CONFIGURATION:
+2025-09-06 13:03:22,643 - trading_system - INFO - main:81 -    Zerodha API: ❌ Not Configured
+2025-09-06 13:03:22,643 - trading_system - INFO - main:82 -    Sonar API: ❌ Not Configured
+2025-09-06 13:03:22,644 - trading_system - INFO - main:84 - ================================================================================
+2025-09-06 13:03:22,644 - trading_system - INFO - main:40 - ✅ System initialized successfully
+2025-09-06 13:03:22,644 - trading_system - INFO - main:141 - 🎭 Running in demonstration mode...
+2025-09-06 13:03:22,644 - trading_system - INFO - main:144 - 📈 Simulating trade filtering...
+2025-09-06 13:03:24,646 - trading_system - INFO - main:150 - 🎯 Top Scoring Opportunities (Demo):
+2025-09-06 13:03:24,646 - trading_system - INFO - main:153 -    RELIANCE: Score 0.85 | Position: ₹150,000
+2025-09-06 13:03:24,646 - trading_system - INFO - main:153 -    TCS: Score 0.78 | Position: ₹150,000
+2025-09-06 13:03:24,647 - trading_system - INFO - main:153 -    HDFCBANK: Score 0.82 | Position: ₹150,000
+2025-09-06 13:03:24,647 - trading_system - INFO - main:153 -    INFY: Score 0.76 | Position: ₹150,000
+2025-09-06 13:03:24,647 - trading_system - INFO - main:153 -    ICICIBANK: Score 0.79 | Position: ₹150,000
+2025-09-06 13:03:24,647 - trading_system - INFO - main:156 - 💼 Position Sizing Analysis:
+2025-09-06 13:03:24,647 - trading_system - INFO - main:160 -    Total Allocation: ₹750,000
+2025-09-06 13:03:24,647 - trading_system - INFO - main:161 -    Capital Utilization: 15.0%
+2025-09-06 13:03:24,647 - trading_system - INFO - main:162 -    Remaining Cash: ₹4,250,000
+2025-09-06 13:03:24,647 - trading_system - INFO - main:165 - 🛡️  Risk Analysis:
+2025-09-06 13:03:24,647 - trading_system - INFO - main:167 -    Daily Loss Limit: ₹100,000
+2025-09-06 13:03:24,647 - trading_system - INFO - main:168 -    Stop Loss per position: ~2.5x ATR
+2025-09-06 13:03:24,647 - trading_system - INFO - main:170 - ✅ Demo simulation completed successfully!
+2025-09-06 13:03:24,647 - trading_system - INFO - main:207 - 🏁 Application completed successfully
+2025-09-06 13:12:14,662 - trading_system - INFO - trading_config:279 - ✅ Logging system initialized - Level: INFO
+2025-09-06 13:12:14,662 - trading_system - INFO - trading_config:280 - Log file: /workspaces/NithyanTradeEngine/logs/trading_system_20250906.log
+2025-09-06 13:12:14,662 - trading_system - INFO - main:32 - 🚀 Initializing Nifty Universe Trading System...
+2025-09-06 13:12:14,662 - trading_system - INFO - main:50 - ================================================================================
+2025-09-06 13:12:14,663 - trading_system - INFO - main:51 - 🏛️  NIFTY UNIVERSE INSTITUTIONAL TRADING SYSTEM
+2025-09-06 13:12:14,663 - trading_system - INFO - main:52 - ================================================================================
+2025-09-06 13:12:14,663 - trading_system - INFO - main:55 - 💰 CAPITAL MANAGEMENT:
+2025-09-06 13:12:14,663 - trading_system - INFO - main:56 -    Total Capital: ₹5,000,000
+2025-09-06 13:12:14,663 - trading_system - INFO - main:57 -    Deployable Capital: ₹2,500,000 (50%)
+2025-09-06 13:12:14,663 - trading_system - INFO - main:58 -    Cash Reserve: ₹2,500,000 (50%)
+2025-09-06 13:12:14,663 - trading_system - INFO - main:61 - 📊 POSITION SIZING:
+2025-09-06 13:12:14,663 - trading_system - INFO - main:62 -    Max Positions: 15
+2025-09-06 13:12:14,663 - trading_system - INFO - main:63 -    Min Positions: 10
+2025-09-06 13:12:14,663 - trading_system - INFO - main:64 -    Position Size Range: ₹75,000 - ₹200,000
+2025-09-06 13:12:14,663 - trading_system - INFO - main:67 - 🛡️  RISK MANAGEMENT:
+2025-09-06 13:12:14,663 - trading_system - INFO - main:68 -    Daily Loss Limit: 2.0%
+2025-09-06 13:12:14,663 - trading_system - INFO - main:69 -    Max Drawdown Limit: 8.0%
+2025-09-06 13:12:14,663 - trading_system - INFO - main:70 -    Max Sector Allocation: 30.0%
+2025-09-06 13:12:14,663 - trading_system - INFO - main:73 - ⚖️  SCORING WEIGHTS:
+2025-09-06 13:12:14,663 - trading_system - INFO - main:74 -    Fundamental: 25%
+2025-09-06 13:12:14,663 - trading_system - INFO - main:75 -    Technical: 30%
+2025-09-06 13:12:14,663 - trading_system - INFO - main:76 -    Quantitative: 25%
+2025-09-06 13:12:14,663 - trading_system - INFO - main:77 -    Macro: 20%
+2025-09-06 13:12:14,663 - trading_system - INFO - main:80 - 🔌 API CONFIGURATION:
+2025-09-06 13:12:14,664 - trading_system - INFO - main:81 -    Zerodha API: ❌ Not Configured
+2025-09-06 13:12:14,664 - trading_system - INFO - main:82 -    Sonar API: ❌ Not Configured
+2025-09-06 13:12:14,664 - trading_system - INFO - main:84 - ================================================================================
+2025-09-06 13:12:14,664 - trading_system - INFO - main:40 - ✅ System initialized successfully
+2025-09-06 13:12:14,664 - trading_system - INFO - main:89 - 🔍 Running system validation...
+2025-09-06 13:12:14,664 - trading_system - INFO - main:102 - ✅ Configuration validation passed
+2025-09-06 13:12:14,886 - trading_system - ERROR - main:113 - ❌ Database connection failed: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-06 13:12:14,886 - trading_system - INFO - main:119 - ✅ Risk limits validation passed
+2025-09-06 13:12:14,886 - trading_system - INFO - main:121 -    daily_loss_limit_inr: ₹100,000
+2025-09-06 13:12:14,886 - trading_system - INFO - main:121 -    max_drawdown_limit_inr: ₹400,000
+2025-09-06 13:12:14,886 - trading_system - INFO - main:121 -    max_sector_allocation_inr: ₹750,000
+2025-09-06 13:12:14,886 - trading_system - INFO - main:121 -    max_position_value_inr: ₹200,000
+2025-09-06 13:12:14,886 - trading_system - INFO - main:129 - 📋 Validation Summary: 2/4 checks passed
+2025-09-06 13:12:14,886 - trading_system - WARNING - main:135 - ⚠️  Some validations failed. Please review configuration.
+2025-09-06 13:12:20,357 - trading_system - INFO - trading_config:279 - ✅ Logging system initialized - Level: INFO
+2025-09-06 13:12:20,357 - trading_system - INFO - trading_config:280 - Log file: /workspaces/NithyanTradeEngine/logs/trading_system_20250906.log
+2025-09-06 13:12:20,357 - trading_system - INFO - main:32 - 🚀 Initializing Nifty Universe Trading System...
+2025-09-06 13:12:20,358 - trading_system - INFO - main:50 - ================================================================================
+2025-09-06 13:12:20,358 - trading_system - INFO - main:51 - 🏛️  NIFTY UNIVERSE INSTITUTIONAL TRADING SYSTEM
+2025-09-06 13:12:20,358 - trading_system - INFO - main:52 - ================================================================================
+2025-09-06 13:12:20,358 - trading_system - INFO - main:55 - 💰 CAPITAL MANAGEMENT:
+2025-09-06 13:12:20,358 - trading_system - INFO - main:56 -    Total Capital: ₹5,000,000
+2025-09-06 13:12:20,358 - trading_system - INFO - main:57 -    Deployable Capital: ₹2,500,000 (50%)
+2025-09-06 13:12:20,358 - trading_system - INFO - main:58 -    Cash Reserve: ₹2,500,000 (50%)
+2025-09-06 13:12:20,358 - trading_system - INFO - main:61 - 📊 POSITION SIZING:
+2025-09-06 13:12:20,358 - trading_system - INFO - main:62 -    Max Positions: 15
+2025-09-06 13:12:20,358 - trading_system - INFO - main:63 -    Min Positions: 10
+2025-09-06 13:12:20,358 - trading_system - INFO - main:64 -    Position Size Range: ₹75,000 - ₹200,000
+2025-09-06 13:12:20,358 - trading_system - INFO - main:67 - 🛡️  RISK MANAGEMENT:
+2025-09-06 13:12:20,358 - trading_system - INFO - main:68 -    Daily Loss Limit: 2.0%
+2025-09-06 13:12:20,358 - trading_system - INFO - main:69 -    Max Drawdown Limit: 8.0%
+2025-09-06 13:12:20,358 - trading_system - INFO - main:70 -    Max Sector Allocation: 30.0%
+2025-09-06 13:12:20,358 - trading_system - INFO - main:73 - ⚖️  SCORING WEIGHTS:
+2025-09-06 13:12:20,358 - trading_system - INFO - main:74 -    Fundamental: 25%
+2025-09-06 13:12:20,358 - trading_system - INFO - main:75 -    Technical: 30%
+2025-09-06 13:12:20,359 - trading_system - INFO - main:76 -    Quantitative: 25%
+2025-09-06 13:12:20,359 - trading_system - INFO - main:77 -    Macro: 20%
+2025-09-06 13:12:20,359 - trading_system - INFO - main:80 - 🔌 API CONFIGURATION:
+2025-09-06 13:12:20,359 - trading_system - INFO - main:81 -    Zerodha API: ❌ Not Configured
+2025-09-06 13:12:20,359 - trading_system - INFO - main:82 -    Sonar API: ❌ Not Configured
+2025-09-06 13:12:20,359 - trading_system - INFO - main:84 - ================================================================================
+2025-09-06 13:12:20,359 - trading_system - INFO - main:40 - ✅ System initialized successfully
+2025-09-06 13:12:20,359 - trading_system - INFO - main:89 - 🔍 Running system validation...
+2025-09-06 13:12:20,359 - trading_system - INFO - main:102 - ✅ Configuration validation passed
+2025-09-06 13:12:20,591 - trading_system - ERROR - main:113 - ❌ Database connection failed: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-09-06 13:12:20,591 - trading_system - INFO - main:119 - ✅ Risk limits validation passed
+2025-09-06 13:12:20,591 - trading_system - INFO - main:121 -    daily_loss_limit_inr: ₹100,000
+2025-09-06 13:12:20,591 - trading_system - INFO - main:121 -    max_drawdown_limit_inr: ₹400,000
+2025-09-06 13:12:20,591 - trading_system - INFO - main:121 -    max_sector_allocation_inr: ₹750,000
+2025-09-06 13:12:20,591 - trading_system - INFO - main:121 -    max_position_value_inr: ₹200,000
+2025-09-06 13:12:20,591 - trading_system - INFO - main:129 - 📋 Validation Summary: 2/4 checks passed
+2025-09-06 13:12:20,592 - trading_system - WARNING - main:135 - ⚠️  Some validations failed. Please review configuration.

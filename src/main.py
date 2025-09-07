@@ -14,8 +14,6 @@ import argparse
 sys.path.append(str(Path(__file__).parent))
 
 from config.trading_config import get_trading_config, setup_logging
-from strategy.strategy_executor import InstitutionalTradingEngine
-from backtesting.backtest_engine import ComprehensiveBacktester
 
 logger = logging.getLogger(__name__)
 
@@ -26,192 +24,196 @@ class TradingApplication:
     
     def __init__(self):
         self.config = get_trading_config()
-        self.trading_engine = None
-        self.backtester = None
+        self.logger = setup_logging(self.config.LOG_LEVEL)
         
-        # Setup logging
-        setup_logging()
-        
-        logger.info("🏛️ Nifty Universe Trading System - Institutional Grade")
-        logger.info(f"💰 Total Capital: ₹{self.config.TOTAL_CAPITAL:,.0f}")
-        logger.info(f"📊 Max Capital Deployment: {self.config.MAX_CAPITAL_UTILIZATION*100:.0f}%")
-        logger.info(f"🎯 Max Positions: {self.config.MAX_POSITIONS}")
-        logger.info(f"⚠️  Daily Loss Limit: {abs(self.config.DAILY_LOSS_LIMIT)*100:.0f}%")
-        logger.info(f"🛡️  Max Drawdown Limit: {abs(self.config.MAX_DRAWDOWN_LIMIT)*100:.0f}%")
-    
-    async def run_live_trading(self):
-        """
-        Run live trading session
-        """
-        
-        logger.info("🚀 Starting Live Trading Mode")
-        
+    async def initialize_system(self):
+        """Initialize all system components"""
         try:
-            # Initialize trading engine
-            self.trading_engine = InstitutionalTradingEngine()
+            self.logger.info("🚀 Initializing Nifty Universe Trading System...")
             
-            # Start trading session
-            session_result = await self.trading_engine.start_trading_session()
+            # Validate configuration
+            self.config.validate_config()
             
-            if not session_result['success']:
-                logger.error(f"Failed to start trading session: {session_result['message']}")
-                return
+            # Display system configuration
+            self.display_system_info()
             
-            logger.info(f"✅ Trading session started: {session_result['session_id']}")
-            logger.info(f"📊 Portfolio Value: ₹{session_result['portfolio_value']:,.0f}")
-            logger.info(f"💵 Cash Available: ₹{session_result['cash_available']:,.0f}")
-            logger.info(f"📈 Current Positions: {session_result['positions_count']}")
-            
-            # Main trading loop
-            cycle_count = 0
-            
-            while True:
-                try:
-                    # Check if we should continue trading
-                    status = self.trading_engine.get_trading_status()
-                    
-                    if not status['session_active'] or status['emergency_stop_active']:
-                        logger.warning("Trading session inactive or emergency stop active")
-                        break
-                    
-                    if not status['market_open']:
-                        logger.info("Market closed - waiting for next session")
-                        await asyncio.sleep(300)  # Check every 5 minutes
-                        continue
-                    
-                    # Run trading cycle
-                    cycle_count += 1
-                    logger.info(f"🔄 Starting trading cycle #{cycle_count}")
-                    
-                    cycle_result = await self.trading_engine.run_trading_cycle()
-                    
-                    if cycle_result['cycle_completed']:
-                        logger.info(f"✅ Cycle #{cycle_count} completed in {cycle_result['cycle_duration_seconds']:.1f}s")
-                        logger.info(f"📡 Signals: {cycle_result['signals_generated']} → {cycle_result['filtered_signals']} filtered")
-                        logger.info(f"⚡ Executions: {cycle_result['successful_executions']}/{cycle_result['orders_placed']}")
-                        logger.info(f"💰 Portfolio: ₹{cycle_result['portfolio_value']:,.0f} (₹{cycle_result['daily_pnl']:+,.0f} today)")
-                        
-                        if cycle_result['risk_alerts'] > 0:
-                            logger.warning(f"⚠️  Risk Alerts: {cycle_result['risk_alerts']}")
-                    
-                    else:
-                        logger.warning(f"⚠️  Cycle #{cycle_count} incomplete: {cycle_result.get('message', 'Unknown error')}")
-                        
-                        if cycle_result.get('emergency_stop'):
-                            logger.critical("🚨 Emergency stop triggered - halting trading")
-                            break
-                    
-                    # Wait before next cycle (5 minutes default)
-                    await asyncio.sleep(300)
-                    
-                except KeyboardInterrupt:
-                    logger.info("Received interrupt signal - stopping trading")
-                    break
-                    
-                except Exception as e:
-                    logger.error(f"Trading cycle error: {e}")
-                    await asyncio.sleep(60)  # Wait 1 minute before retry
-                    continue
-            
-            # Stop trading session
-            stop_result = await self.trading_engine.stop_trading_session()
-            
-            if stop_result['success']:
-                logger.info("✅ Trading session stopped successfully")
-                logger.info(f"📊 Session Report: {stop_result.get('session_report', {})}")
-            else:
-                logger.error(f"Failed to stop trading session: {stop_result.get('message', 'Unknown error')}")
+            self.logger.info("✅ System initialized successfully")
+            return True
             
         except Exception as e:
-            logger.error(f"Live trading failed: {e}")
-            raise
+            self.logger.error(f"❌ System initialization failed: {e}")
+            return False
     
-    async def run_backtest(self, 
-                          start_date: str = "2023-01-01",
-                          end_date: str = "2024-01-01",
-                          initial_capital: float = None):
-        """
-        Run comprehensive backtest
+    def display_system_info(self):
+        """Display comprehensive system information"""
         
-        Args:
-            start_date: Backtest start date (YYYY-MM-DD)
-            end_date: Backtest end date (YYYY-MM-DD)
-            initial_capital: Starting capital (defaults to config)
-        """
+        self.logger.info("=" * 80)
+        self.logger.info("🏛️  NIFTY UNIVERSE INSTITUTIONAL TRADING SYSTEM")
+        self.logger.info("=" * 80)
         
-        logger.info(f"📊 Starting Backtest Mode: {start_date} to {end_date}")
+        # Capital Management Info
+        self.logger.info("💰 CAPITAL MANAGEMENT:")
+        self.logger.info(f"   Total Capital: ₹{self.config.TOTAL_CAPITAL:,.0f}")
+        self.logger.info(f"   Deployable Capital: ₹{self.config.deployable_capital:,.0f} (50%)")
+        self.logger.info(f"   Cash Reserve: ₹{self.config.TOTAL_CAPITAL - self.config.deployable_capital:,.0f} (50%)")
         
-        try:
-            # Initialize backtester
-            self.backtester = ComprehensiveBacktester()
-            
-            # Set initial capital
-            if initial_capital is None:
-                initial_capital = self.config.TOTAL_CAPITAL
-            
-            logger.info(f"💰 Backtest Capital: ₹{initial_capital:,.0f}")
-            
-            # Run backtest
-            results = self.backtester.run_full_backtest(
-                start_date=start_date,
-                end_date=end_date,
-                initial_capital=initial_capital
-            )
-            
-            # Display results
-            self._display_backtest_results(results)
-            
-            return results
-            
-        except Exception as e:
-            logger.error(f"Backtest failed: {e}")
-            raise
+        # Position Sizing Info
+        self.logger.info("📊 POSITION SIZING:")
+        self.logger.info(f"   Max Positions: {self.config.MAX_POSITIONS}")
+        self.logger.info(f"   Min Positions: {self.config.MIN_POSITIONS}")
+        self.logger.info(f"   Position Size Range: ₹{self.config.min_position_value:,.0f} - ₹{self.config.max_position_value:,.0f}")
+        
+        # Risk Management Info
+        self.logger.info("🛡️  RISK MANAGEMENT:")
+        self.logger.info(f"   Daily Loss Limit: {abs(self.config.DAILY_LOSS_LIMIT)*100:.1f}%")
+        self.logger.info(f"   Max Drawdown Limit: {abs(self.config.MAX_DRAWDOWN_LIMIT)*100:.1f}%")
+        self.logger.info(f"   Max Sector Allocation: {self.config.MAX_SECTOR_ALLOCATION*100:.1f}%")
+        
+        # Scoring Weights
+        self.logger.info("⚖️  SCORING WEIGHTS:")
+        self.logger.info(f"   Fundamental: {self.config.FUNDAMENTAL_WEIGHT*100:.0f}%")
+        self.logger.info(f"   Technical: {self.config.TECHNICAL_WEIGHT*100:.0f}%")
+        self.logger.info(f"   Quantitative: {self.config.QUANTITATIVE_WEIGHT*100:.0f}%")
+        self.logger.info(f"   Macro: {self.config.MACRO_WEIGHT*100:.0f}%")
+        
+        # API Status
+        self.logger.info("🔌 API CONFIGURATION:")
+        self.logger.info(f"   Zerodha API: {'✅ Configured' if self.config.ZERODHA_API_KEY else '❌ Not Configured'}")
+        self.logger.info(f"   Sonar API: {'✅ Configured' if self.config.SONAR_API_KEY else '❌ Not Configured'}")
+        
+        self.logger.info("=" * 80)
     
-    async def run_walk_forward_optimization(self,
-                                          start_date: str = "2022-01-01",
-                                          end_date: str = "2024-01-01",
-                                          train_months: int = 12,
-                                          test_months: int = 3):
-        """
-        Run walk-forward optimization
-        """
+    async def run_system_validation(self):
+        """Run comprehensive system validation"""
         
-        logger.info(f"🔄 Starting Walk-Forward Optimization: {start_date} to {end_date}")
-        logger.info(f"📅 Training: {train_months} months, Testing: {test_months} months")
+        self.logger.info("🔍 Running system validation...")
         
+        validation_results = {
+            'config_validation': False,
+            'database_connection': False,
+            'api_connectivity': False,
+            'risk_limits': False
+        }
+        
+        # 1. Configuration Validation
         try:
-            # Initialize backtester
-            self.backtester = ComprehensiveBacktester()
-            
-            # Define parameter ranges for optimization
-            param_ranges = {
-                'composite_score_threshold': [0.65, 0.70, 0.75, 0.80],
-                'fundamental_weight': [0.20, 0.25, 0.30],
-                'technical_weight': [0.25, 0.30, 0.35],
-                'quantitative_weight': [0.20, 0.25, 0.30],
-                'macro_weight': [0.15, 0.20, 0.25],
-                'max_position_size': [0.06, 0.08, 0.10],
-                'atr_stop_multiplier': [2.0, 2.5, 3.0]
-            }
-            
-            # Run walk-forward optimization
-            results, optimization = await self.backtester.walk_forward_optimization(
-                start_date=start_date,
-                end_date=end_date,
-                param_ranges=param_ranges,
-                initial_capital=self.config.TOTAL_CAPITAL,
-                train_months=train_months,
-                test_months=test_months
-            )
-            
-            # Display results
-            self._display_optimization_results(results, optimization)
-            
-            return results, optimization
-            
+            self.config.validate_config()
+            validation_results['config_validation'] = True
+            self.logger.info("✅ Configuration validation passed")
         except Exception as e:
-            logger.error(f"Walk-forward optimization failed: {e}")
-            raise
+            self.logger.error(f"❌ Configuration validation failed: {e}")
+        
+        # 2. Database Connection Test
+        try:
+            from config.database_config import get_database_manager
+            db_manager = get_database_manager()
+            validation_results['database_connection'] = True
+            self.logger.info("✅ Database connection successful")
+        except Exception as e:
+            self.logger.error(f"❌ Database connection failed: {e}")
+        
+        # 3. Risk Limits Validation
+        try:
+            risk_limits = self.config.get_risk_limits()
+            validation_results['risk_limits'] = True
+            self.logger.info("✅ Risk limits validation passed")
+            for limit_name, limit_value in risk_limits.items():
+                self.logger.info(f"   {limit_name}: ₹{limit_value:,.0f}")
+        except Exception as e:
+            self.logger.error(f"❌ Risk limits validation failed: {e}")
+        
+        # Summary
+        passed_validations = sum(validation_results.values())
+        total_validations = len(validation_results)
+        
+        self.logger.info(f"📋 Validation Summary: {passed_validations}/{total_validations} checks passed")
+        
+        if passed_validations == total_validations:
+            self.logger.info("🎉 All validations passed! System ready for operation.")
+            return True
+        else:
+            self.logger.warning("⚠️  Some validations failed. Please review configuration.")
+            return False
+    
+    async def run_demo_mode(self):
+        """Run system in demonstration mode"""
+        
+        self.logger.info("🎭 Running in demonstration mode...")
+        
+        # Simulate universe filtering
+        self.logger.info("📈 Simulating trade filtering...")
+        await asyncio.sleep(2)
+        
+        demo_stocks = ['RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'ICICIBANK']
+        demo_scores = [0.85, 0.78, 0.82, 0.76, 0.79]
+        
+        self.logger.info("🎯 Top Scoring Opportunities (Demo):")
+        for stock, score in zip(demo_stocks, demo_scores):
+            position_size = self.config.deployable_capital * 0.06  # 6% allocation
+            self.logger.info(f"   {stock}: Score {score:.2f} | Position: ₹{position_size:,.0f}")
+        
+        # Simulate position sizing
+        self.logger.info("💼 Position Sizing Analysis:")
+        total_allocation = sum(self.config.deployable_capital * 0.06 for _ in demo_stocks)
+        utilization = (total_allocation / self.config.TOTAL_CAPITAL) * 100
+        
+        self.logger.info(f"   Total Allocation: ₹{total_allocation:,.0f}")
+        self.logger.info(f"   Capital Utilization: {utilization:.1f}%")
+        self.logger.info(f"   Remaining Cash: ₹{self.config.TOTAL_CAPITAL - total_allocation:,.0f}")
+        
+        # Risk analysis
+        self.logger.info("🛡️  Risk Analysis:")
+        max_daily_loss = self.config.TOTAL_CAPITAL * abs(self.config.DAILY_LOSS_LIMIT)
+        self.logger.info(f"   Daily Loss Limit: ₹{max_daily_loss:,.0f}")
+        self.logger.info(f"   Stop Loss per position: ~2.5x ATR")
+        
+        self.logger.info("✅ Demo simulation completed successfully!")
+
+async def main():
+    """Main entry point"""
+    
+    parser = argparse.ArgumentParser(description='Nifty Universe Institutional Trading System')
+    parser.add_argument('--mode', choices=['validate', 'demo', 'backtest'], 
+                       default='validate', help='Operating mode')
+    parser.add_argument('--log-level', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'], 
+                       default='INFO', help='Logging level')
+    
+    args = parser.parse_args()
+    
+    # Initialize application
+    app = TradingApplication()
+    
+    # Set log level
+    app.logger.setLevel(getattr(logging, args.log_level))
+    
+    try:
+        # Initialize system
+        if not await app.initialize_system():
+            sys.exit(1)
+        
+        # Run based on mode
+        if args.mode == 'validate':
+            success = await app.run_system_validation()
+            if not success:
+                sys.exit(1)
+                
+        elif args.mode == 'demo':
+            await app.run_demo_mode()
+            
+        elif args.mode == 'backtest':
+            app.logger.info("📊 Backtesting mode not yet implemented")
+            app.logger.info("   Coming soon: Comprehensive backtesting framework")
+        
+        app.logger.info("🏁 Application completed successfully")
+        
+    except KeyboardInterrupt:
+        app.logger.info("⏹️  Application interrupted by user")
+    except Exception as e:
+        app.logger.error(f"💥 Application failed: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    asyncio.run(main())
     
     def _display_backtest_results(self, results):
         """Display comprehensive backtest results"""

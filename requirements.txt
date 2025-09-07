@@ -1,0 +1,58 @@
+# Core Python packages
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+
+# Technical analysis
+TA-Lib>=0.4.25
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+redis>=4.5.0
+
+# API and HTTP
+aiohttp>=3.8.0
+requests>=2.31.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+websockets>=11.0
+
+# Trading APIs
+kiteconnect>=4.2.0
+
+# Data manipulation and analysis
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Async programming
+asyncio-mqtt>=0.13.0
+asyncpg>=0.28.0
+
+# Configuration and environment
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# Logging and monitoring
+structlog>=23.1.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.11.0
+
+# Development tools
+black>=23.7.0
+isort>=5.12.0
+flake8>=6.0.0
+
+# Jupyter for analysis
+jupyter>=1.0.0
+ipykernel>=6.25.0
+
+# Additional utilities
+tqdm>=4.65.0
+schedule>=1.2.0
+python-dateutil>=2.8.0
